@@ -1,5 +1,5 @@
 # -- 基础设置 --
-baseURL = "https://academic-blog.pages.dev/"
+baseURL = "https://blog.laujoe.top"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-Hans"
 title = "我的学术博客"
