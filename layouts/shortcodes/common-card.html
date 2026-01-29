@@ -1,0 +1,161 @@
+{{ $color := .Get "color" | default "#4361ee" }} 
+<div class="hugo-info-card" style="--theme-color: {{ $color }};">
+    <div class="card-header">
+        <div class="card-icon-box">
+            <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+        </div>
+
+        <div class="card-meta">
+            <span class="card-nature">{{ .Get "nature" }}</span>
+            <div class="card-name">{{ .Get "name" }}</div> </div>
+    </div>
+
+    {{ if .Inner }}
+    <div class="card-body">
+        {{ .Inner | markdownify }}
+    </div>
+    {{ end }}
+</div>
+
+<style>
+    .hugo-info-card {
+        /* === Congo 风格配色变量 === */
+        
+        /* ☀️ 亮色模式 */
+        --cc-bg-card: #ffffff;
+        --cc-bg-header: #f9fafb; /* 非常淡的灰，更干净 */
+        --cc-border: rgba(0,0,0,0.06);
+        --cc-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* 减弱阴影 */
+        
+        --cc-text-name: #1f2937; /* neutral-800 */
+        --cc-text-body: #4b5563; /* neutral-600 */
+        --cc-text-nature: var(--theme-color);
+        --cc-bg-nature: rgba(0, 0, 0, 0.04);
+
+        /* 🌙 暗色模式 (适配 Congo neutral-800/900) */
+        --cc-dark-bg: #1f2937; /* neutral-800 */
+        --cc-dark-header: #171717; /* neutral-900 */
+        --cc-dark-border: rgba(255,255,255,0.1);
+        --cc-dark-text-name: #f3f4f6;
+        --cc-dark-text-body: #d1d5db;
+
+        /* 容器基础样式 */
+        background: var(--cc-bg-card);
+        border-radius: 8px; /* Congo 偏向稍微小一点的圆角 */
+        border: 1px solid var(--cc-border);
+        box-shadow: var(--cc-shadow);
+        margin: 1.5rem 0; /* 调整上下间距 */
+        overflow: hidden;
+        font-family: inherit;
+        line-height: 1.6;
+    }
+
+    /* 🌙 暗色模式生效逻辑 */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-scheme="light"]) .hugo-info-card {
+            background: var(--cc-dark-bg);
+            border-color: var(--cc-dark-border);
+            --cc-bg-header: var(--cc-dark-header);
+            --cc-text-name: var(--cc-dark-text-name);
+            --cc-text-body: var(--cc-dark-text-body);
+            --cc-bg-nature: rgba(255,255,255,0.1);
+            --cc-text-nature: #fff;
+            box-shadow: none; /* 暗色模式通常不需要投影 */
+        }
+    }
+    html[data-scheme="dark"] .hugo-info-card {
+        background: var(--cc-dark-bg);
+        border-color: var(--cc-dark-border);
+        --cc-bg-header: var(--cc-dark-header);
+        --cc-text-name: var(--cc-dark-text-name);
+        --cc-text-body: var(--cc-dark-text-body);
+        --cc-bg-nature: rgba(255,255,255,0.1);
+        --cc-text-nature: #fff;
+        box-shadow: none;
+    }
+
+    /* 头部布局 */
+    .card-header {
+        display: flex;
+        align-items: center;
+        padding: 12px 18px; /* 缩小内边距，更紧凑 */
+        background: var(--cc-bg-header);
+        border-bottom: 1px solid var(--cc-border);
+    }
+    
+    html[data-scheme="dark"] .card-header {
+        border-bottom-color: var(--cc-dark-border);
+    }
+
+    /* 图标 */
+    .card-icon-box {
+        width: 36px; /* 缩小图标区域 */
+        height: 36px;
+        background: var(--theme-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 14px;
+        flex-shrink: 0;
+        color: #fff;
+    }
+    .card-svg { width: 18px; height: 18px; }
+
+    /* 信息区域 */
+    .card-meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px; /* 减小行间距 */
+    }
+
+    /* 标签 (Nature) */
+    .card-nature {
+        font-size: 0.75rem; /* 12px */
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--cc-text-nature);
+        background: var(--cc-bg-nature);
+        padding: 2px 8px;
+        border-radius: 4px;
+        width: fit-content;
+    }
+
+    /* 标题 (Name) - 重点修复：字体调小，移除 h3 默认属性 */
+    .card-name {
+        font-size: 1.05rem; /* 约 17px，适中大小 */
+        font-weight: 700;
+        color: var(--cc-text-name);
+        line-height: 1.3;
+        margin: 0; /* 强制移除边距 */
+    }
+
+    /* 内容区域 */
+    .card-body {
+        padding: 16px 18px;
+        color: var(--cc-text-body);
+        font-size: 0.95rem; /* 约 15px，适合正文阅读 */
+        background: transparent;
+    }
+
+    /* 🔥 强制重置 prose 对 p 标签的影响 */
+    .card-body p {
+        margin-top: 0.5em !important;
+        margin-bottom: 0.5em !important;
+        line-height: 1.6;
+    }
+    .card-body p:first-child { margin-top: 0 !important; }
+    .card-body p:last-child { margin-bottom: 0 !important; }
+    
+    /* 让链接在卡片里也显示主题色 */
+    .card-body a {
+        color: var(--theme-color);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+    }
+</style>
