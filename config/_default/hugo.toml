@@ -5,6 +5,8 @@
 # baseURL = "https://your_domain.com/"
 defaultContentLanguage = "zh-Hans"
 
+theme = ["github.com/jpanther/congo/v2"]
+
 enableRobotsTXT = true
 summaryLength = 0
 
