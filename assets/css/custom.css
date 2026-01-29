@@ -170,54 +170,29 @@ html.dark .toc-container {
 
 
 
+/* ==================================================
+   精准拦截：正文容器 (.prose) 内的首个图片/画幅
+   ================================================== */
 
+/* 1. 隐藏文章正文区域内最顶部的封面图片/画幅 (针对 Page Bundles) */
+.prose picture.mb-6,
+.prose img.mb-6:first-child,
+.prose > p:first-child > img.mb-6 {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+}
 
-
-/* =========================================
-   Congo 封面图：全宽、自适应、高清
-   ========================================= */
-
-article header img,
-.article-header img,
-figure.w-full img {
-    
-    /* 1. 🔥 核心需求：宽度与文字容器完全一致 */
-    width: 100% !important; 
-    
-    /* 2. 🔥 高度自适应：根据宽度自动算出高度，绝不变形 */
-    height: auto !important;
-    
-    /* 3. 解除限制：只有去掉最大高度，才能保证图片不被强制压缩 */
-    max-height: none !important; 
-    
-    /* 4. 布局细节 */
+/* 2. 首页安全补丁：确保非文章详情页的图片不受干扰 */
+/* 首页的结构通常不在 .prose 容器内 */
+.layout-main img,
+.layout-list img,
+.article-card img {
     display: block !important;
-    margin: 0 0 2rem 0 !important; /* 紧贴文字左侧对齐，下方留白 */
-    
-    /* 5. 消除模糊的关键：不要裁切，完整显示原图 */
-    object-fit: contain !important; 
-    
-    /* 6. 质感美化 */
-    border-radius: 12px;   /* 圆角 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12); /* 舒服的投影 */
-    
-    /* 7. 渲染优化 */
-    image-rendering: -webkit-optimize-contrast; /* 让边缘更清晰 */
+    visibility: visible !important;
+    height: auto !important;
 }
-
-/* 📱 移动端微调：依然保持全宽 */
-@media (max-width: 600px) {
-    article header img,
-    .article-header img {
-        width: 100% !important;
-        height: auto !important;
-        margin-bottom: 1.5rem !important;
-    }
-}
-
-
-
-
 
 
 
@@ -304,6 +279,9 @@ body::before {
     backface-visibility: hidden;
     transform: translateZ(0);
 }
+
+
+
 
 /* 🔥 优化3：深色模式专属调整 
    深色背景上，白色的噪点会显得很脏，必须大幅降低透明度 */
