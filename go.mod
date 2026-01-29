@@ -1,4 +1,4 @@
-module laujoeacademic
+module github.com/laujoe/academic-blog
 
 go 1.24.0
 
