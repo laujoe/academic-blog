@@ -1,14 +1,15 @@
-# -- Site Configuration --
-# Refer to the theme docs for more details about each of these parameters.
-# https://jpanther.github.io/congo/docs/getting-started/
-
-# baseURL = "https://your_domain.com/"
+# -- 基础设置 --
+baseURL = "https://academic-blog.pages.dev/"
+languageCode = "zh-cn"
 defaultContentLanguage = "zh-Hans"
-
+title = "我的学术博客"
 theme = "congo"
 
+# -- 全局性能与搜索设置 --
 enableRobotsTXT = true
 summaryLength = 0
+timeZone = "Asia/Shanghai"
+enableGitInfo = false
 
 [pagination]
   pagerSize = 10
@@ -16,6 +17,13 @@ summaryLength = 0
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
+# -- 渲染设置 (Congo 必须) --
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# -- 隐私与服务设置 --
 [privacy]
   [privacy.vimeo]
     enableDNT = true
@@ -28,25 +36,13 @@ summaryLength = 0
   [services.x]
     disableInlineCSS = true
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
-
-# --- 全局设置 (放在文件最顶端) ---
-languageCode = "zh-cn"
-timeZone = "Asia/Shanghai"     # 1. 强制时区
-enableGitInfo = false          # 2. 关闭 Git 时间干扰
-
-# --- Frontmatter 读取规则 ---
-[frontmatter]
-  date = ["date", ":default"]
-  lastmod = ["lastmod", ":default"]
-  publishDate = ["publishDate", "date", ":default"]
-
-# --- 文章页面设置 ---
+# -- 文章页面设置 --
 [params.article]
   showDate = true
   showLastMod = false
 
+# -- Frontmatter 读取规则 --
+[frontmatter]
+  date = ["date", ":default"]
+  lastmod = ["lastmod", ":default"]
+  publishDate = ["publishDate", "date", ":default"]
