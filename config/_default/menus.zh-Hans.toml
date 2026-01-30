@@ -35,8 +35,14 @@
   params = { icon = "cv" }
 
 [[main]]
-  name = "Soar Freely 博客"
+  name = "回顾与总结"
+  pageRef = "Review-summary"
   weight = 50
+  params = { icon = "Review-summary" }
+
+[[main]]
+  name = "Soar Freely 博客"
+  weight = 60
   url = "https://www.laujoe.top"
   params = { icon = "blog" }
 

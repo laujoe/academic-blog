@@ -3,3 +3,6 @@ resources
 .hugo_build.lock
 hugo.exe
 .DS_Store
+Thumbs.db
+
+.Trashes

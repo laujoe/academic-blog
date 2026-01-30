@@ -7,7 +7,8 @@ params:
   showTableOfContents: false
 
 tags:
-    - 学术论文
+    - 医学
+    - 艺术学
 ---
 {{< fullwidth >}}
 

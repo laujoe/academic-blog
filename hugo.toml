@@ -10,6 +10,7 @@ enableRobotsTXT = true
 summaryLength = 0
 timeZone = "Asia/Shanghai"
 enableGitInfo = false
+publishDir = "public"
 
 [pagination]
   pagerSize = 10
@@ -46,3 +47,4 @@ enableGitInfo = false
   date = ["date", ":default"]
   lastmod = ["lastmod", ":default"]
   publishDate = ["publishDate", "date", ":default"]
+

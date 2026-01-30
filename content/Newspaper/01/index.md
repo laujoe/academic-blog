@@ -7,7 +7,7 @@ params:
   showTableOfContents: false
 
 tags:
-    - 报刊文章
+    - 艺术学
 ---
 {{< fullwidth >}}
 

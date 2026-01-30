@@ -10,7 +10,7 @@ params:
   
 
 tags:
-    - 学术论文
+    - 历史学
 ---
 {{< fullwidth >}}
 

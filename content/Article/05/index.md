@@ -7,7 +7,8 @@ params:
   showTableOfContents: false
 
 tags:
-    - 学术论文
+    - 艺术学
+    - 宗教学
 ---
 {{< fullwidth >}}
 
