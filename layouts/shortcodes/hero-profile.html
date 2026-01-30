@@ -1,0 +1,245 @@
+{{/* 参数获取 */}}
+{{ $name := .Get "name" | default "Lau Joe" }}
+{{ $bio := .Get "bio" | default "Ph.D. Candidate / Python Developer / Academic Researcher" }}
+{{ $avatar := .Get "avatar" | default "img/avatar.jpg" }}
+{{ $banner := .Get "banner" }} {{/* 可选：自定义背景图url，不填则显示动态渐变 */}}
+
+<div class="hero-profile-card">
+    {{/* 1. 顶部背景 Banner (如果没有图片，就显示极光动画) */}}
+    <div class="hero-banner" {{ if $banner }}style="background-image: url('{{ $banner }}');"{{ end }}>
+        {{ if not $banner }}
+        <div class="aurora-bg"></div>
+        {{ end }}
+    </div>
+
+    {{/* 2. 核心内容区 */}}
+    <div class="hero-content">
+        {{/* 头像区 */}}
+        <div class="hero-avatar-wrapper">
+            <img src="{{ $avatar }}" alt="{{ $name }}" class="hero-avatar">
+            <div class="online-status" title="Available for collaboration"></div>
+        </div>
+
+        {{/* 文本区 */}}
+        <h1 class="hero-name">{{ $name }}</h1>
+        <p class="hero-bio">{{ $bio }}</p>
+        
+        {{/* 3. 研究标签/关键词 */}}
+        <div class="hero-tags">
+            <span>☀️ Soar Freely主理人</span>
+            <span>📖 美术史研究</span>
+            <span>🔬 跨学科视角</span>
+            <span>🤖 关注前沿科技</span>
+        </div>
+
+        {{/* 4. 社交链接 (动态读取配置文件) */}}
+        <div class="hero-socials">
+            {{/* 遍历全局配置中的 links 列表 */}}
+            {{ range .Site.Params.author.links }}
+                {{ range $name, $url := . }}
+                    {{/* 1. 构建图标路径：assets/icons/名字.svg */}}
+                    {{ $iconPath := printf "icons/%s.svg" $name }}
+                    {{/* 2. 尝试获取资源 */}}
+                    {{ $icon := resources.Get $iconPath }}
+                    
+                    {{/* 3. 如果找到了对应的 SVG 文件，就渲染按钮 */}}
+                    {{ if $icon }}
+                    <a href="{{ $url | safeURL }}" target="_blank" class="social-btn" title="{{ $name | humanize }}" rel="noopener noreferrer">
+                        {{/* 4. 注入 SVG 内容 (去掉了 fill 等硬编码属性，由 CSS 控制) */}}
+                        {{ $icon.Content | safeHTML }}
+                    </a>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </div>
+
+        <div class="hero-divider"></div>
+
+        {{/* 5. 底部统计数据 (学术成果概览) */}}
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-num">9</span>
+                <span class="stat-label">研究成果</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num">20 +</span>
+                <span class="stat-label">交流项目</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num">10 +</span>
+                <span class="stat-label">荣誉获奖</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-profile-card {
+        /* === 变量配置 (适配 Congo) === */
+        --hp-bg: #ffffff;
+        --hp-text: #1f2937;
+        --hp-text-light: #6b7280;
+        --hp-border: rgba(0,0,0,0.08);
+        --hp-shadow: 0 12px 40px -10px rgba(0,0,0,0.1);
+        --hp-banner-h: 160px;
+        
+        --hp-accent: var(--color-primary-500, #3b82f6); /* 读取主题色 */
+        
+        position: relative;
+        background: var(--hp-bg);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--hp-shadow);
+        border: 1px solid var(--hp-border);
+        margin: 2rem auto;
+        max-width: 700px; /* 卡片最大宽度 */
+        font-family: inherit;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    /* 🌙 深色模式 */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-scheme="light"]) .hero-profile-card {
+            --hp-bg: #1f2937; /* neutral-800 */
+            --hp-text: #f3f4f6;
+            --hp-text-light: #9ca3af;
+            --hp-border: rgba(255,255,255,0.1);
+            --hp-shadow: 0 12px 40px -10px rgba(0,0,0,0.4);
+        }
+    }
+    html[data-scheme="dark"] .hero-profile-card {
+        --hp-bg: #1f2937;
+        --hp-text: #f3f4f6;
+        --hp-text-light: #9ca3af;
+        --hp-border: rgba(255,255,255,0.1);
+        --hp-shadow: 0 12px 40px -10px rgba(0,0,0,0.4);
+    }
+
+    /* 1. 动态极光背景 */
+    .hero-banner {
+        height: var(--hp-banner-h);
+        background-color: #3b82f6;
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+    }
+    .aurora-bg {
+        position: absolute; inset: 0;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: aurora 15s ease infinite;
+        opacity: 0.8;
+    }
+    @keyframes aurora {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 2. 头像 */
+    .hero-avatar-wrapper {
+        position: relative;
+        width: 120px; height: 120px;
+        margin: -60px auto 15px auto; /* 负边距让头像上浮 */
+        z-index: 10;
+    }
+    .hero-avatar {
+        width: 100%; height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--hp-bg); /* 白色描边，区分背景 */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        background: var(--hp-bg);
+    }
+    .online-status {
+        position: absolute; bottom: 8px; right: 8px;
+        width: 18px; height: 18px;
+        background: #10b981; /* Green */
+        border: 3px solid var(--hp-bg);
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* 3. 文本 */
+    .hero-content { padding: 0 2rem 2rem 2rem; }
+    .hero-name {
+        margin: 0; font-size: 1.8rem; font-weight: 800; color: var(--hp-text);
+        letter-spacing: -0.5px;
+    }
+    .hero-bio {
+        margin: 8px 0 16px 0; font-size: 1rem; color: var(--hp-text-light);
+        line-height: 1.5;
+    }
+
+    /* 4. 标签 */
+    .hero-tags {
+        display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
+        margin-bottom: 20px;
+    }
+    .hero-tags span {
+        font-size: 0.8rem; font-weight: 600;
+        padding: 4px 12px; border-radius: 50px;
+        background: rgba(125,125,125,0.1);
+        color: var(--hp-text);
+    }
+
+    /* 5. 社交按钮 */
+    .hero-socials {
+        display: flex; justify-content: center; gap: 12px;
+        margin-bottom: 24px;
+    }
+    .social-btn {
+        width: 40px; height: 40px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        background: transparent;
+        color: var(--hp-text-light);
+        transition: all 0.2s;
+        border: 1px solid rgba(125,125,125,0.2);
+    }
+   .social-btn:hover {
+        /* 1. 背景变为极淡的灰色 (深色模式下会自动适配) */
+        background: rgba(125, 125, 125, 0.1);
+        
+        /* 2. 🔥 核心修改：图标变为主题色 (而不是白色) */
+        color: var(--hp-accent);
+        
+        /* 3. 边框也变为主题色 */
+        border-color: var(--hp-accent);
+        
+        /* 4. 保持上浮动效 */
+        transform: translateY(-3px);
+        
+        /* 5. 阴影改为主题色的淡光晕 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    }
+    .social-btn svg { width: 20px; height: 20px; }
+
+    /* 分割线 */
+    .hero-divider {
+        height: 1px; width: 100%;
+        background: linear-gradient(to right, transparent, var(--hp-border), transparent);
+        margin-bottom: 20px;
+    }
+
+    /* 6. 统计数据 */
+    .hero-stats {
+        display: flex; justify-content: space-around; align-items: center;
+    }
+    .stat-item {
+        display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-num {
+        font-size: 1.2rem; font-weight: 800; color: var(--hp-text);
+    }
+    .stat-label {
+        font-size: 0.8rem; font-weight: 600; color: var(--hp-text-light); text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .stat-divider {
+        width: 1px; height: 30px; background: var(--hp-border);
+    }
+</style>

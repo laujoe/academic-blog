@@ -1,0 +1,589 @@
+/* ==================================================
+   Congo 目录 (ToC) - 精致纹理 & 自动编号版
+   ================================================== */
+
+/* --- 1. 容器美化 (核心装饰) --- */
+.toc-container {
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+    color: var(--color-neutral-600);
+    
+    /* 📦 卡片化容器 */
+    background-color: var(--color-neutral-50); /* 极淡的底色 */
+    border-radius: 12px; /* 圆角 */
+    padding: 1.2rem;     /* 内边距 */
+    border: 1px solid var(--color-neutral-100); /* 边框 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* 柔和阴影 */
+    
+    /* 🎨 装饰纹理：极淡的波点背景 */
+    background-image: radial-gradient(var(--color-neutral-200) 1px, transparent 1px);
+    background-size: 20px 20px; /* 波点间距 */
+    
+    /* 适配深色模式 */
+    transition: all 0.3s ease;
+}
+
+/* 深色模式下的微调 */
+html.dark .toc-container {
+    background-color: rgba(30, 30, 30, 0.4);
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    border-color: rgba(255,255,255,0.05);
+}
+
+/* 初始化一级计数器 */
+#TableOfContents > ul {
+    counter-reset: toc-h2; 
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --- 2. 目录主标题 (带装饰线) --- */
+.toc-container h3 {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    color: var(--color-neutral-800);
+    margin: 0 0 1rem 0 !important;
+    padding-bottom: 0.8rem;
+    
+    /* 装饰性双线边框 */
+    border-bottom: 3px double var(--color-neutral-200); 
+    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* 标题图标装饰 */
+.toc-container h3::before {
+    content: "¶"; /* 段落符号作为装饰 */
+    color: var(--color-primary-600);
+    font-size: 1.2em;
+    opacity: 0.5;
+}
+
+/* --- 3. 核心链接样式 (强制单行 + 交互) --- */
+#TableOfContents a {
+    display: block;
+    text-decoration: none;
+    color: var(--color-neutral-600);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 强制单行显示 */
+    white-space: nowrap;      
+    overflow: hidden;          
+    text-overflow: ellipsis;   
+    max-width: 100%;           
+    
+    padding: 6px 10px;        /* 增加左右内边距，为了 hover 效果 */
+    border-radius: 6px;       /* 胶囊圆角 */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- 4. 一级目录 (H2) - 编号装饰 --- */
+#TableOfContents > ul > li {
+    counter-increment: toc-h2;
+    margin-bottom: 4px !important; /* 项之间的间距 */
+}
+
+#TableOfContents > ul > li > a {
+    font-weight: 700; 
+    font-size: 1.05rem !important;
+    color: var(--color-neutral-800);
+    /* 底部虚线分隔 (增加层次感) */
+    border-bottom: 1px dashed var(--color-neutral-100);
+}
+/* 去掉最后一个 H2 的底线 */
+#TableOfContents > ul > li:last-child > a { border-bottom: none; }
+
+/* 编号设计：带背景的数字 */
+#TableOfContents > ul > li > a::before {
+    content: counter(toc-h2) "."; 
+    color: var(--color-primary-600);
+    font-weight: 900;
+    margin-right: 8px;
+    font-family: "Georgia", serif; /* 使用衬线体增加学术感 */
+    opacity: 0.8;
+}
+
+/* --- 5. 二级目录 (H3) - 树形缩进 --- */
+#TableOfContents > ul > li > ul {
+    counter-reset: toc-h3;
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 4px 0 8px 0 !important;
+    
+    /* 左侧装饰线 (连接线) */
+    position: relative;
+    margin-left: 12px !important; /* 整体缩进 */
+    border-left: 2px solid var(--color-neutral-200); /* 灰色竖线 */
+}
+
+#TableOfContents > ul > li > ul > li {
+    counter-increment: toc-h3;
+    margin: 0 !important;
+}
+
+#TableOfContents > ul > li > ul > li > a {
+    font-size: 0.95rem !important;
+    font-weight: 500;
+    color: var(--color-neutral-500);
+    padding-left: 15px; /* 给子编号留位置 */
+    border-bottom: none; /* 二级目录不需要底线 */
+}
+
+/* 子编号设计 */
+#TableOfContents > ul > li > ul > li > a::before {
+    content: counter(toc-h2) "." counter(toc-h3);
+    color: var(--color-neutral-400);
+    font-size: 0.85em;
+    font-family: monospace;
+    margin-right: 6px;
+    
+    /* 装饰性：小圆点连接 */
+    display: inline-block;
+    background: var(--color-neutral-100);
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* --- 6. 交互效果 (悬停高亮) --- */
+
+/* 鼠标悬停 */
+#TableOfContents a:hover {
+    color: var(--color-primary-700) !important;
+    background-color: rgba(var(--color-primary-500-rgb), 0.1); /* 主题色淡背景 */
+    transform: translateX(4px); /* 动感位移 */
+    padding-left: 14px; /* 挤压文字 */
+}
+
+/* 激活状态 */
+#TableOfContents a.active {
+    color: var(--color-primary-600) !important;
+    background-color: var(--color-neutral-100);
+    font-weight: 800 !important;
+    border-left: 3px solid var(--color-primary-600); /* 左侧高亮条 */
+    border-radius: 0 6px 6px 0; /* 左侧变直角 */
+}
+
+
+
+/* ==================================================
+   精准拦截：正文容器 (.prose) 内的首个图片/画幅
+   ================================================== */
+
+/* 1. 隐藏文章正文区域内最顶部的封面图片/画幅 (针对 Page Bundles) */
+.prose picture.mb-6,
+.prose img.mb-6:first-child,
+.prose > p:first-child > img.mb-6 {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+}
+
+/* 2. 首页安全补丁：确保非文章详情页的图片不受干扰 */
+/* 首页的结构通常不在 .prose 容器内 */
+.layout-main img,
+.layout-list img,
+.article-card img {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+}
+
+
+
+/* 1. 引入霞鹜文楷 (屏幕版 - 字体更润，不会发虚) */
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css');
+
+:root {
+    /* 2. 应用字体 */
+    --font-sans: "LXGW WenKai Screen", "FangSong", "STFangsong", serif !important;
+    --font-serif: "LXGW WenKai Screen", "FangSong", "STFangsong", serif !important;
+}
+
+/* 3. 强制全局应用 */
+body {
+    font-family: var(--font-sans);
+}
+
+/* 4. 让加粗的文字更明显 (楷体有时候加粗不明显) */
+b, strong, h1, h2, h3, h4, h5, h6 {
+    font-weight: bold; /* 或者用具体的数值，如 700 */
+}
+
+
+
+
+/* =========================================
+   全局微交互优化
+   ========================================= */
+
+/* 1. 自定义滚动条 (Webkit核心浏览器) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent; /* 轨道透明 */
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5); /* 灰色半透明 */
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-500); /* 悬停变成主题色 */
+}
+
+/* 2. 文字选中高亮 (Selection) */
+/* 当用户选中你的文字复制时，不再是默认的蓝色，而是你的主题色 */
+::selection {
+    background: rgba(59, 130, 246, 0.2); /* 主题色背景 (根据你的主题色调整RGB) */
+    color: inherit;
+    text-shadow: none;
+}
+
+
+
+/* =========================================
+   全局纹理优化：细腻磨砂纸质感 (V2)
+   ========================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 🔥 优化1：SVG 频率调整 (baseFrequency 0.65 -> 0.8) 
+       让颗粒更细小，更像纸张纤维，而不是电子噪点 */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+    
+    /* 🔥 优化2：混合模式改为“柔光” 
+       Overlay 有时候太强烈，Soft-light 更自然 */
+    mix-blend-mode: soft-light;
+    
+    /* 默认浅色模式下的透明度 */
+    opacity: 0.35; 
+    
+    /* 交互属性 */
+    pointer-events: none; /* 鼠标穿透，不影响点击 */
+    z-index: 9999;        /* 覆盖在最上层 */
+    
+    /* 性能优化：防止移动端滚动卡顿 */
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+
+
+
+/* 🔥 优化3：深色模式专属调整 
+   深色背景上，白色的噪点会显得很脏，必须大幅降低透明度 */
+html[data-scheme="dark"] body::before {
+    opacity: 0.15; /* 只有极其微弱的质感 */
+    mix-blend-mode: overlay; /* 深色下切回 overlay 效果更好 */
+}
+
+
+
+
+
+
+
+/* =========================================
+   Resume Design System (Lau Joe Edition)
+   Optimized: Refined Details & Micro-Interactions
+   ========================================= */
+
+/* --- 1. 布局容器 --- */
+.resume-container {
+    display: grid;
+    grid-template-columns: 320px 1fr; /* 左侧稍微加宽到 320px 以防内容拥挤 */
+    gap: 50px; /* 增加间距，呼吸感更强 */
+    max-width: 1200px; /* 限制最大宽度，防止在大屏上太散 */
+    margin: 40px auto; /* 居中 */
+    font-family: var(--font-sans);
+    align-items: start; /* 顶部对齐 */
+}
+
+/* --- 2. 左侧侧边栏 (Sticky 升级) --- */
+.resume-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+    /* 🔥 核心优化：让侧边栏随页面滚动而固定 */
+    position: sticky;
+    top: 2rem; 
+    height: fit-content;
+}
+
+/* --- 3. 玻璃拟态卡片 (通用) --- */
+.profile-card, .skills-card {
+    /* 保持原有无背景设计，仅保留磨砂感 */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px); /* 增加模糊度，质感更高级 */
+    -webkit-backdrop-filter: blur(16px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 30px 24px;
+    
+    /* 优化阴影：更柔和 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 暗色模式适配 */
+html[data-scheme="dark"] .profile-card, 
+html[data-scheme="dark"] .skills-card {
+    background: rgba(30, 30, 30, 0.4); /* 降低透明度，防止发白 */
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card:hover, .skills-card:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    border-color: rgba(var(--color-primary-500-rgb), 0.3); /* 悬停微发光 */
+}
+
+/* --- 4. 头像与状态 --- */
+.profile-avatar-wrapper {
+    position: relative;
+    width: 110px; /*稍微放大 */
+    height: 110px;
+    margin: 0 auto 20px;
+}
+.profile-avatar {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.8);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+.profile-status {
+    position: absolute; bottom: 8px; right: 8px;
+    width: 18px; height: 18px;
+    background: #10b981;
+    border: 3px solid white;
+    border-radius: 50%;
+    
+    /* 🔥 优化：增加呼吸动画 */
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulse-green 2s infinite;
+}
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* --- 5. 文本信息细节 --- */
+.profile-name {
+    text-align: center; font-size: 1.6rem; font-weight: 800;
+    margin: 5px 0 5px 0; color: var(--color-neutral-900);
+    letter-spacing: -0.5px;
+}
+.profile-role {
+    text-align: center; font-size: 0.9rem; color: var(--color-primary-600);
+    font-weight: 700; margin-bottom: 24px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+}
+.profile-bio {
+    font-size: 0.95rem; line-height: 1.7;
+    color: var(--color-neutral-600);
+    text-align: justify; /* 两端对齐更整齐 */
+    text-align-last: center;
+    font-style: italic;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed rgba(0,0,0,0.1); /* 虚线分割 */
+}
+
+.info-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.95rem; color: var(--color-neutral-700);
+    margin-bottom: 12px;
+    transition: transform 0.2s;
+}
+.info-item:hover { transform: translateX(5px); color: var(--color-primary-600); }
+.info-item span.icon { width: 20px; text-align: center; display: inline-block; } /* 图标对齐 */
+
+/* --- 6. 技能标签 --- */
+.section-title-sm {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; color: var(--color-neutral-400); 
+    margin-bottom: 16px; 
+}
+.skill-group { margin-bottom: 18px; }
+.skill-category { 
+    font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; 
+    color: var(--color-neutral-800); display: block;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+    font-size: 0.85rem; padding: 5px 12px;
+    background: transparent; /* 去除背景，更清爽 */
+    border: 1px solid rgba(var(--color-neutral-200-rgb), 1);
+    color: var(--color-neutral-700);
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: default;
+}
+.skill-tag:hover {
+    background: rgba(var(--color-primary-500-rgb), 0.1);
+    border-color: var(--color-primary-500);
+    color: var(--color-primary-600);
+    transform: translateY(-1px);
+}
+
+/* --- 7. 右侧内容区 --- */
+.resume-section { margin-bottom: 60px; } /* 增加段落间距 */
+.section-title {
+    font-size: 1.8rem; font-weight: 800;
+    display: flex; align-items: center; gap: 15px;
+    margin-bottom: 35px;
+    color: var(--color-neutral-900);
+}
+.section-title::after {
+    content: ""; flex: 1; height: 2px;
+    /* 渐变线增强 */
+    background: linear-gradient(90deg, rgba(var(--color-primary-500-rgb), 0.3), transparent);
+    margin-left: 20px; border-radius: 2px;
+}
+
+/* --- 8. 时间轴系统 (优化版) --- */
+.timeline {
+    position: relative;
+    padding-left: 24px;
+    /* 线条优化：虚线或更细的实线 */
+    border-left: 2px solid rgba(var(--color-neutral-200-rgb), 0.6);
+}
+
+.timeline-item { position: relative; margin-bottom: 40px; }
+
+/* 时间轴节点 */
+.timeline-marker {
+    position: absolute; left: -31px; top: 6px; /* 完美对齐线 */
+    width: 12px; height: 12px;
+    background: var(--color-neutral-50); /* 跟随背景色 */
+    border: 3px solid var(--color-primary-500);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+    box-shadow: 0 0 0 3px var(--color-neutral-50); /* 增加白色外圈防止压线 */
+}
+.timeline-item:hover .timeline-marker { 
+    transform: scale(1.4); 
+    background: var(--color-primary-500);
+    box-shadow: 0 0 0 6px rgba(var(--color-primary-500-rgb), 0.2);
+}
+
+/* 时间轴内容卡片 */
+.timeline-content {
+    /* 弱化背景，更融入整体 */
+    background: transparent; 
+    border-radius: 12px;
+    padding: 10px 10px 10px 0; /* 减少左侧padding，紧凑排版 */
+    transition: transform 0.3s ease;
+}
+
+/* 标题区 */
+.timeline-header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    flex-wrap: wrap; gap: 8px; margin-bottom: 6px; 
+}
+.timeline-title { font-size: 1.25rem; font-weight: 800; color: var(--color-neutral-900); margin: 0; }
+
+.timeline-time { 
+    font-size: 0.85rem; font-weight: 600; font-family: var(--font-mono);
+    color: var(--color-primary-600); 
+    background: rgba(var(--color-primary-500-rgb), 0.08); 
+    padding: 4px 10px; border-radius: 6px; 
+}
+
+.timeline-subtitle { 
+    font-size: 1rem; color: var(--color-neutral-500); 
+    font-weight: 600; margin-bottom: 16px; display: block;
+}
+
+/* 列表详情优化 */
+.timeline-details { 
+    margin: 0; padding-left: 6px; 
+    color: var(--color-neutral-600); 
+    font-size: 0.95rem; line-height: 1.7; 
+    list-style: none; /* 去除默认圆点 */
+}
+.timeline-details li { 
+    position: relative; 
+    margin-bottom: 6px; 
+    padding-left: 20px; 
+}
+/* 自定义列表图标 */
+.timeline-details li::before {
+    content: "▹"; /* 使用三角形或 • */
+    position: absolute; left: 0; top: 0;
+    color: var(--color-primary-500);
+    font-weight: bold; font-size: 1.1em;
+}
+
+/* 📱 移动端适配 */
+@media (max-width: 850px) {
+    .resume-container { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+        margin: 20px 0;
+        padding: 0 20px; /* 防止贴边 */
+    }
+    .resume-sidebar { 
+        position: relative; top: 0; /* 移动端取消 sticky */
+    }
+    .profile-card { text-align: center; }
+    .info-item { justify-content: center; }
+    .timeline-header { align-items: flex-start; flex-direction: column; gap: 2px; }
+    .timeline-time { align-self: flex-start; margin-top: 5px; }
+}
+
+
+
+
+/* =========================================
+   Resume Layout (独立页面版)
+   ========================================= */
+
+/* 1. 最外层容器：直接撑满父级，并留出边距 */
+.resume-wrapper-fullscreen {
+    width: 100%;
+    max-width: 1400px; /* 限制最大宽度，防止太大 */
+    margin: 40px auto; /* 居中 */
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* 2. 简历主容器：Grid 双栏布局 */
+.resume-container {
+    display: grid;
+    /* 左侧固定 320px，右侧自动填满剩余空间 */
+    grid-template-columns: 320px 1fr; 
+    gap: 50px;
+    align-items: start;
+}
+
+/* 3. 移动端强制单栏 */
+@media (max-width: 850px) {
+    .resume-container {
+        grid-template-columns: 1fr; /* 变单栏 */
+        gap: 30px;
+    }
+}
+
+/* --- 以下保持之前的样式不变 (卡片、时间轴等) --- */
+/* 如果你之前没贴全，把卡片(profile-card)、时间轴(timeline)的样式保留在这里 */
+/* ... (保留 profile-card, timeline 等样式) ... */

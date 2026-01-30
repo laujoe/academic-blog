@@ -1,0 +1,49 @@
+<div id="fullwidth-trigger" style="display:none;"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- 目标宽度 ---
+        const pageTargetWidth = '96%'; 
+        
+        // 1. 先把最外层的 Body 和 Main 撑开并居中
+        const outerContainers = [document.body, document.querySelector('main')];
+        outerContainers.forEach(el => {
+            if (!el) return;
+            el.style.maxWidth = pageTargetWidth;
+            el.style.width = pageTargetWidth;
+            el.style.marginLeft = 'auto'; // 居中
+            el.style.marginRight = 'auto';
+            el.style.padding = '0';       // 清理内边距
+        });
+
+        // 2. 关键修复：找到所有带有“宽度限制”的容器，全部强制设为 100%
+        // Congo 的结构通常是 Main -> Article -> .prose
+        // 我们需要把 Article 和 .prose 及其子元素都撑满
+        
+        // 选中 article 和所有带有 prose 类的元素
+        const contentWrappers = document.querySelectorAll('article, .prose, .max-w-prose, .max-w-7xl');
+        
+        contentWrappers.forEach(el => {
+            // 强制样式覆盖
+            el.style.maxWidth = '90%';
+            el.style.minWidth = '90%';
+            el.style.width = '90%';
+            el.style.margin = '0 auto'; // 确保内容块内部也居中
+        });
+
+        // 3. 隐藏侧边栏目录 (Congo 的目录通常在 aside 或 .toc-sidebar)
+        const sidebars = document.querySelectorAll('aside, .toc-sidebar, .hidden.lg\\:block');
+        sidebars.forEach(el => {
+            el.style.display = 'none';
+            el.style.setProperty('display', 'none', 'important');
+        });
+        
+        // 4. (可选) 如果有图片，确保图片也自适应撑满
+        const images = document.querySelectorAll('.prose img');
+        images.forEach(img => {
+            img.style.width = '100%';
+            img.style.maxWidth = '100%';
+        });
+
+        console.log("Fullwidth V3 Activated: All constraints removed.");
+    });
+</script>
