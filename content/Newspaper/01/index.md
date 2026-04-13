@@ -34,6 +34,6 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="展现“为时代而设计”的艺术愿景——评汪大伟 《无中生有： 设计的艺术》" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./展现“为时代而设计”的艺术愿景——评汪大伟 《无中生有： 设计的艺术》.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./展现“为时代而设计”的艺术愿景——评汪大伟 《无中生有： 设计的艺术》.pdf" showSource="true"  >}}
+ -->
 

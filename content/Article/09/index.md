@@ -1,6 +1,6 @@
 ---
 title: 从荒诞到科学：16—19世纪西方精神疾病治疗的艺术叙事
-date: "2025-10-01"
+date: "2025-09-20"
 lastmod: ''
 
 params:
@@ -37,8 +37,9 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="从荒诞到科学：16—19世纪西方精神疾病治疗的艺术叙事" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./从荒诞到科学：16—19世纪西方精神疾病治疗的艺术叙事.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./从荒诞到科学：16—19世纪西方精神疾病治疗的艺术叙事.pdf" showSource="true"  >}}
+ -->
 {{< common-card nature="论文全文（未删节版本）" name="疯癫与血液、解放与文明——16-19 世纪西方艺术作品的精神疾病内涵" />}}
 
-{{< embed-pdf url="./疯癫与血液、解放与文明——16-19 世纪西方艺术作品的精神疾病内涵.pdf" allowDownload="false" >}}
+<!-- {{< embed-pdf url="./疯癫与血液、解放与文明——16-19 世纪西方艺术作品的精神疾病内涵.pdf" allowDownload="false" >}}
+ -->

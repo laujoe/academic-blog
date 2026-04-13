@@ -37,5 +37,5 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="中国古代鸵鸟称谓考——《中国古代动物名称考》“鸵鸟”条目勘误" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./中国古代鸵鸟称谓考——《中国古代动物名称考》“鸵鸟”条目勘误.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./中国古代鸵鸟称谓考——《中国古代动物名称考》“鸵鸟”条目勘误.pdf" showSource="true"  >}}
+ -->

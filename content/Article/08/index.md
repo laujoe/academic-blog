@@ -1,6 +1,6 @@
 ---
 title: 中国古代的“高尔夫”运动
-date: "2024-06-01"
+date: "2024-11-05"
 lastmod: ''
 
 params:
@@ -34,6 +34,6 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="中国古代的“高尔夫”运动" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./中国古代的“高尔夫”运动.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./中国古代的“高尔夫”运动.pdf" showSource="true"  >}}
+ -->
 

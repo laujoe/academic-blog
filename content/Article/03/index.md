@@ -1,6 +1,6 @@
 ---
 title: 历史性 国际性 时代性——一带一路美术创作的三种价值取向
-date: "2024-04-01"
+date: "2024-04-28"
 lastmod: ''
 
 params:
@@ -34,4 +34,5 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="历史性 国际性 时代性——一带一路美术创作的三种价值取向" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./历史性 国际性 时代性——一带一路美术创作的三种价值取向.pdf" showSource="true"  >}}
+<!-- {{< embed-pdf url="./历史性 国际性 时代性——一带一路美术创作的三种价值取向.pdf" showSource="true"  >}}
+ -->

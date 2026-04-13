@@ -1,6 +1,6 @@
 ---
 title: 美国克利夫兰艺术博物馆藏战国蛇座凤鸟漆木鼓架考释
-date: "2024-06-01"
+date: "2024-06-15"
 lastmod: ''
 
 params:
@@ -35,6 +35,6 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="美国克利夫兰艺术博物馆藏战国蛇座凤鸟漆木鼓架考释" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./美国克利夫兰艺术博物馆藏战国蛇座凤鸟漆木鼓架考释.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./美国克利夫兰艺术博物馆藏战国蛇座凤鸟漆木鼓架考释.pdf" showSource="true"  >}}
+ -->
 

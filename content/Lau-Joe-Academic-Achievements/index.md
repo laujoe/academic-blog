@@ -1,7 +1,7 @@
 ---
 title: 成果一览
 date: "2025-02-15"
-lastmod: '2026-01-29'
+lastmod: '2026-04-13'
 
 params:
   showTableOfContents: true
@@ -57,7 +57,7 @@ params:
     authors="刘晋"    
     field="艺术学" 
     venue="《东方艺术》2024年第2期 4-11页" 
-    date="2024-04-01" 
+    date="2024-04-28" 
     status="已发表"
     stars="7" 
     color="#4361ee"
@@ -75,7 +75,7 @@ params:
     authors="刘晋" 
     field="艺术学" 
     venue="《中国美术》2024年第3期 18-24页" 
-    date="2024-06-01" 
+    date="2024-06-15" 
     status="已发表"
     stars="8" 
     color="#4361ee"
@@ -94,7 +94,7 @@ params:
     authors="刘晋" 
     field="艺术学 宗教学" 
     venue="《收藏家》2024年第6期 74-88页" 
-    date="2024-06-01" 
+    date="2024-06-10" 
     status="已发表"
     stars="9" 
     color="#4361ee"
@@ -131,7 +131,7 @@ params:
     authors="刘晋" 
     field="艺术学" 
     venue="《金钥匙(汉文、蒙古文)》2024年第5期 17-23页" 
-    date="2024-10-01" 
+    date="2024-10-25" 
     status="已发表"
     stars="7" 
     color="#4361ee"
@@ -149,7 +149,7 @@ params:
     authors="刘晋" 
     field="艺术学 历史学" 
     venue="《文史天地》2024年第11期 58-61页" 
-    date="2024-11-01" 
+    date="2024-11-05" 
     status="已发表"
     stars="6" 
     color="#4361ee"
@@ -167,7 +167,7 @@ params:
     authors="刘晋 鹿栋 范淑英（通讯作者）" 
     field="艺术学 医学" 
     venue="《医学与哲学》2025年第18期 74-78页+81页" 
-    date="2025-10-01" 
+    date="2025-09-20" 
     status="已发表"
     stars="8" 
     color="#4361ee"
@@ -177,6 +177,45 @@ params:
 >}}
 通过对流行于 16—19 世纪西方社会的“疯狂之石”“纪念性画作” 与“患者肖像”等主题性绘画进行探究，认为这些美术作品以视觉形式记载了精神疾病治疗如何从荒诞到科学、从讽刺至理性的全过程，是探究当时社会文化与医学观念的重要媒介，在唤醒社会关注精神疾病、促进人文关怀方面发挥了重要作用。这些美术作品直至今日仍然在唤醒社会关注精神疾病、促进人文关怀方面发挥着不可替代的作用，为我们今天反思精神健康领域中的污名化、倡导人文关怀提供了宝贵的历史参照。
 {{< /academic >}}
+
+### 解读“异域之物”：美国克利夫兰艺术博物馆藏战国蛇座凤鸟漆木鼓架的西方诠释
+{{< academic 
+    title="解读“异域之物”：美国克利夫兰艺术博物馆藏战国蛇座凤鸟漆木鼓架的西方诠释" 
+    type="论文" 
+    level="普刊"
+    authors="刘晋" 
+    field="艺术学" 
+    venue="《收藏家》2025年第12期 84-93页" 
+    date="2025-12-10" 
+    status="已发表"
+    stars="8" 
+    color="#4361ee"
+    award="代表作"
+    pdf="https://kns.cnki.net/kcms2/article/abstract?v=JRmhR0Lfi24yxG2yUqWIYEHz3cwXIlwMUEcArLlK3LIGinarGURQcT6d970Vek5ugTgWmxfwYq_7nTjentIGJ9qe3lOMbvhfb1XN8vE5QLzkwBosM7pBo7XBoGeMmhB1djodqfanMN8ZcFncgXSjVa-VGGq3EH6NU11m8Rdoy-A4JcVMhDheUQ%3D%3D&uniplatform=NZKPT&language=CHS"
+    link="/Article/10/index.md"
+>}}
+战国蛇座凤鸟漆木鼓架自20世纪30年代末于湖南长沙出土，后被日本古董商浅野梅吉购得。日本学者梅原末治、水野清一对此进行探究，取得一定成果。1938年，美国克利夫兰艺术博物馆购买并收藏该器物，战国蛇座凤鸟漆木鼓架从此正式进入西方视野。西方理解中国器物时存在涵盖“前理解框架”与“分类法”在内的预设立场，这对西方以独特视角理解中国器物具有重要作用。以霍利斯、李雪曼为代表的博物馆从业者针对器物的命名、造型、纹饰、风格、位置、构件等诸层面进行探究，奠定了西方理解战国蛇座凤鸟漆木鼓架的基础。博物馆的研究成果经由西方社会各界的科普介绍、图录编纂、艺术史定位等行为，则真正将战国蛇座凤鸟漆木鼓架这件“异域之物”推向大众视域。
+{{< /academic >}}
+
+### 流民图的出现与演变——兼论清代“铁泪图”的风格转向
+{{< academic 
+    title="流民图的出现与演变——兼论清代“铁泪图”的风格转向" 
+    type="论文" 
+    level="AMI入库"
+    authors="刘晋" 
+    field="艺术学 历史学" 
+    venue="《古今农业》2025年第4期 67-81页" 
+    date="2025-12-25" 
+    status="已发表"
+    stars="8" 
+    color="#4361ee"
+    award="代表作"
+    pdf="https://kns.cnki.net/kcms2/article/abstract?v=JRmhR0Lfi246o97A_L3cHI2aUl3fXdAh4ZdIIKq7QBg8WeeS4lVTGSDTRQA9IzBIMti3daavEB6ejP6mBIvX_SN2iOKDxdw7Tu1AMLudeMjfpbKY3uMSZYNfIvM7xUVhRGGwcyUtjCP3yX4UQ8hGc2pU_2OtZ1mr-Ob-v9Sd9WW3AmzrB6LnLD2bBY3XGRZq3iBDS-4uSPE&uniplatform=NZKPT&captchaId=a1c4e60f-0854-4a8f-b676-aa2815253cb3"
+    link="/Article/11/index.md"
+>}}
+流民图是中国古代重要的图像形式，是官吏、文人上疏请求朝廷蠲免赋税，发放赈济的重要媒介，也被视作实现特定政治目标的重要工具。不少画家感念民生艰苦，亦创作描绘百姓流离失所的《乞丐图》。晚清时期，江南善人余治改流民图为铁泪图，强化了铁泪图的劝赈主题，更加重视社会赈济。丁戊奇荒期间，谢家福、郑观应效法余治，减弱图像的血腥表现而深入挖掘内在的残酷内涵，新增福报图像以增强劝赈说服力，创制专门描绘儿童、妇女悲惨处境的铁泪图像，并积极与社会各界合作，使“铁泪图”传播途径更为多样，展现出残酷化内涵、福报式图像、妇幼类主题、多样性传播的鲜明特征，反映出中国古代传统图像面对社会剧变时的转向。
+{{< /academic >}}
+
 
 ## 学术交流（学习类）
 
@@ -466,7 +505,7 @@ params:
     role="poster" 
     location="美国口述历史协会年会（Oral History Association），辛辛那提（Cincinnati），俄亥俄州（Ohio），美国"
     level="年会"
-    field="Computer Vision"
+    field="综合"
 >}}
 - 展示了海报。
 {{< /conferencetime >}}

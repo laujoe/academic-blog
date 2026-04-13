@@ -1,6 +1,6 @@
 ---
 title: 东亚道教文献的流传与衍变—基于《玉枢宝经》插图本的探究
-date: "2024-06-01"
+date: "2024-06-10"
 lastmod: ''
 
 params:
@@ -36,6 +36,6 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="东亚道教文献的流传与衍变—基于《玉枢宝经》插图本的探究" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./东亚道教文献的流传与衍变—基于《玉枢宝经》插图本的探究.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./东亚道教文献的流传与衍变—基于《玉枢宝经》插图本的探究.pdf" showSource="true"  >}}
+ -->
 

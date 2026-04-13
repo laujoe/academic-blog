@@ -34,5 +34,5 @@ tags:
 
 {{< common-card nature="论文全文（刊出版本）" name="现代中国形象的艺术诠释——基于杭州第十九届亚运会官方海报的探究" color="#2a9d8f" />}}
 
-{{< embed-pdf url="./现代中国形象的艺术诠释——基于杭州第十九届亚运会官方海报的探究.pdf" showSource="true"  >}}
-
+<!-- {{< embed-pdf url="./现代中国形象的艺术诠释——基于杭州第十九届亚运会官方海报的探究.pdf" showSource="true"  >}}
+ -->
