@@ -5,7 +5,7 @@
 {{< hero-profile 
     name="Lau Joe" 
     avatar="/img/author.jpg"
-    bio="🎓美院在读硕士研究生 | 📚业余小说作家 | ✍️艺术评论人"
+    bio="🎓美院在读硕士 | 📚业余小说作家 | ✍️艺术评论人"
 >}}
 
 **代表作**
